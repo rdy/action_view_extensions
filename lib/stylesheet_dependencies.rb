@@ -9,9 +9,9 @@ module StylesheetDependencies
    end
 
    order.collect do |a|
-     stylesheets.detect { |b| File.basename(b, '.css') == a }
+     stylesheets.detect { |b| File.basename(b, '.css') == File.basename(a, '.css') }
    end.concat(stylesheets).reject do |a|
-     rejects.detect { |b| File.basename(a, '.css') == b }
+     rejects.detect { |b| File.basename(a, '.css') == File.basename(b, '.css') }
    end.compact.uniq
  end
 end
